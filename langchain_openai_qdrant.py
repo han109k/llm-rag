@@ -33,7 +33,7 @@ qdrant = Qdrant.from_documents(
     url="http://localhost:6333",
     prefer_grpc=True,
     collection_name="my_documents",
-    force_recreate=True,  # Set to True to recreate the collection
+    force_recreate=True,  # * Set to True to recreate the collection
 )
 
 query = "What is synthetic intelligence?"
@@ -64,4 +64,7 @@ response = chain.invoke(query)
 print("Response: ", response)
 
 response = chain.invoke("What is this podcast about?")
+print("Response: ", response)
+
+response = chain.invoke("What openai model are you using?")
 print("Response: ", response)
