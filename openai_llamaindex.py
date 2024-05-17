@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 from dotenv import load_dotenv
-from llama_index.core import ServiceContext, SimpleDirectoryReader, VectorStoreIndex
+from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
 from llama_index.core.evaluation import (
     RetrieverEvaluator,
     generate_question_context_pairs,
