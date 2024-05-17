@@ -19,7 +19,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 documents = SimpleDirectoryReader("./").load_data()
 
-llm = OpenAI(model="gpt-4o")
+llm = OpenAI(model="gpt-3.5-turbo")
 
 # Build index with a chunk_size of 512
 node_parser = SimpleNodeParser.from_defaults(chunk_size=512)
