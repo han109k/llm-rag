@@ -5,3 +5,6 @@ python-dotenv
 qdrant-client
 llama-index
 pandas
+html2text
+trulens_eval
+langchainhub

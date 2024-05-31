@@ -6,3 +6,9 @@ __pycache__/
 # Environments
 .env
 .venv
+
+# Files
+*.json
+qdrant_data
+.DS_Store
+*.txt
