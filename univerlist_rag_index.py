@@ -46,8 +46,12 @@ for university in data["query"]:
     s20 = university["order20"]
     s21 = university["order21"]
     s22 = university["order"]
+    sch = university["scholar"]
 
-    text_to_embed = f"Üniversite: {uni_name} {faculty}, Bölüm: {pname}, 2022 Puanı: {p22}, 2022 Sıralaması: {s22}, 2021 Puanı: {p21}, 2021 Sıralaması: {s21}, 2020 Puanı: {p20}, 2020 Sıralaması: {s20}, 2019 Puanı: {p19}, 2019 Sıralaması: {s19}, 2018 Puanı: {p18}, 2018 Sıralaması: {s18}, 2017 Puanı: {p17}, 2017 Sıralaması: {s17}"
+    if sch in ["%25", "%50", "%75", "%100"]:
+        sch = sch + " Burslu"
+
+    text_to_embed = f"Üniversite: {uni_name} {faculty}, Bölüm: {pname}, {sch}, 2022 Puanı: {p22}, 2022 Sıralaması: {s22}, 2021 Puanı: {p21}, 2021 Sıralaması: {s21}, 2020 Puanı: {p20}, 2020 Sıralaması: {s20}, 2019 Puanı: {p19}, 2019 Sıralaması: {s19}, 2018 Puanı: {p18}, 2018 Sıralaması: {s18}, 2017 Puanı: {p17}, 2017 Sıralaması: {s17}"
 
     content = university["content"]
     if content is not None and uni_name not in uni_set:

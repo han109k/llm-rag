@@ -8,3 +8,4 @@ pandas
 html2text
 trulens_eval
 langchainhub
+watchdog
