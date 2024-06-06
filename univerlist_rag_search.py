@@ -60,6 +60,8 @@ chain = setup | prompt | model | parser
 # response = chain.invoke("yaşar üniversitesi eğitim ücretleri ne?")
 # print("\033[36m Response: ", response)
 
+####!!!! Evaluation of the model with TruLens !!!!####
+# https://medium.com/@glenpatzlaff/raw-json-to-measurable-rag-insights-in-a-matter-of-minutes-with-langchain-and-trulens-f36e4415b079
 # Initialize provider class
 provider = OpenAI()
 

@@ -31,9 +31,12 @@ if os.path.exists("univerlist_rag.txt"):
 
 uni_set = set()
 for university in data["query"]:
+    country = university["country"]
+    province = university["province"]
     uni_name = university["uname"]
     faculty = university["faculty"]
     pname = university["pname"]
+    lang = university["language"]
     p17 = university["mark17"]
     p18 = university["mark18"]
     p19 = university["mark19"]
@@ -51,7 +54,7 @@ for university in data["query"]:
     if sch in ["%25", "%50", "%75", "%100"]:
         sch = sch + " Burslu"
 
-    text_to_embed = f"Üniversite: {uni_name} {faculty}, Bölüm: {pname}, {sch}, 2022 Puanı: {p22}, 2022 Sıralaması: {s22}, 2021 Puanı: {p21}, 2021 Sıralaması: {s21}, 2020 Puanı: {p20}, 2020 Sıralaması: {s20}, 2019 Puanı: {p19}, 2019 Sıralaması: {s19}, 2018 Puanı: {p18}, 2018 Sıralaması: {s18}, 2017 Puanı: {p17}, 2017 Sıralaması: {s17}"
+    text_to_embed = f"Üniversite: {uni_name} {faculty}, Bölüm: {pname} ({lang}), {sch}, 2022 Puanı: {p22}, 2022 Sıralaması: {s22}, 2021 Puanı: {p21}, 2021 Sıralaması: {s21}, 2020 Puanı: {p20}, 2020 Sıralaması: {s20}, 2019 Puanı: {p19}, 2019 Sıralaması: {s19}, 2018 Puanı: {p18}, 2018 Sıralaması: {s18}, 2017 Puanı: {p17}, 2017 Sıralaması: {s17}"
 
     content = university["content"]
     if content is not None and uni_name not in uni_set:
@@ -61,7 +64,7 @@ for university in data["query"]:
         text_to_embed += content
         uni_set.add(uni_name)
     else:
-        text_to_embed += "\n"
+        text_to_embed = f"Konum: {country}, {province}, " + text_to_embed + "\n"
 
     # write to file called univerlist_rag.txt in main directory
     with open("univerlist_rag.txt", "a") as f:
@@ -72,7 +75,7 @@ docs = TextLoader("univerlist_rag.txt").load()
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 documents = text_splitter.split_documents(docs)
 
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
 qdrant = Qdrant.from_documents(
     documents,
